@@ -17,7 +17,7 @@ import {
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAIL,
   ORDER_DELETE_REQUEST,
-  ORDER_DELETE_SUCCES,
+  ORDER_DELETE_SUCCESS,
   ORDER_DELETE_FAIL,
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_SUCCESS,
@@ -135,7 +135,7 @@ export const deleteOrder = (orderId) => (dispatch, getState) => {
     const {data} = Axios.delete(`/api/orders/${orderId}`, {
       headers: {Authorization: `Bearer ${userInfo.token}`}
     });
-    dispatch({type:ORDER_DELETE_SUCCES, payload:data})
+    dispatch({type:ORDER_DELETE_SUCCESS, payload:data})
   } catch(error) {
     const message =
       error.response && error.response.data.message

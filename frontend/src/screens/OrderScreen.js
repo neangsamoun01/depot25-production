@@ -72,9 +72,7 @@ export default function OrderScreen(props) {
   const deliverHandler = () => {
     dispatch(deliverOrder(order._id));
   };
-  const deliverHandler =()=>{
-    dispatch(deleteOrder())
-  }
+
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (

@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb+srv://dev_depot:Pa$$w0rd@cluster0.phsjy.mongodb.net/depot25app?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URL || 'mongodb//localhost/amazona', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

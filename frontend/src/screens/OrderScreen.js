@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-
 import {
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
@@ -19,6 +18,7 @@ export default function OrderScreen(props) {
   const { order, loading, error } = orderDetails;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   const orderPay = useSelector((state) => state.orderPay);
   const {
     loading: loadingPay,
@@ -44,13 +44,12 @@ export default function OrderScreen(props) {
       };
       document.body.appendChild(script);
     };
-    
-      if (
-        !order ||
-        successPay ||
-        successDeliver ||
-        (order && order._id !== orderId)
-      ) {
+    if (
+      !order ||
+      successPay ||
+      successDeliver ||
+      (order && order._id !== orderId)
+    ) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
@@ -63,12 +62,11 @@ export default function OrderScreen(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
+  }, [dispatch, orderId, sdkReady, successPay, successDeliver, order]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));
   };
-
   const deliverHandler = () => {
     dispatch(deliverOrder(order._id));
   };
@@ -85,7 +83,7 @@ export default function OrderScreen(props) {
           <ul>
             <li>
               <div className="card card-body">
-                <h2>Shipping</h2>
+                <h2>Shippring</h2>
                 <p>
                   <strong>Name:</strong> {order.shippingAddress.fullName} <br />
                   <strong>Address: </strong> {order.shippingAddress.address},
@@ -201,7 +199,7 @@ export default function OrderScreen(props) {
                   )}
                 </li>
               )}
-               {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                 <li>
                   {loadingDeliver && <LoadingBox></LoadingBox>}
                   {errorDeliver && (
